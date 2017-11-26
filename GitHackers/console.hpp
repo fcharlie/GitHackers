@@ -9,6 +9,7 @@
 #endif
 #include <io.h>
 #include <string>
+#include <string_view>
 namespace console {
 	namespace fc {
 		enum Color : WORD {
@@ -59,6 +60,10 @@ namespace console {
 	template <typename T>
 	T const *Argument(std::basic_string<T> const &value) noexcept {
 		return value.c_str();
+	}
+	template<typename T>
+	T const *Argument(std::basic_string_view<T> value) noexcept {
+		return value.data();
 	}
 	template <typename... Args>
 	int StringPrint(wchar_t *const buffer, size_t const bufferCount,

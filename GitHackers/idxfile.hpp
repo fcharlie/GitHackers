@@ -100,7 +100,7 @@ namespace idx {
 				pre = i.offset;
 				if (size > limit) {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
-						base::Sha1FromIndex(hIdx, i.offset).c_str(), (float)size / base::Megabyte,
+						base::Sha1FromIndex(hIdx, i.offset), (float)size / base::Megabyte,
 						(float)limit / base::Megabyte);
 					return false;
 				}
@@ -158,7 +158,7 @@ namespace idx {
 				pre = i.offset;
 				if (size > limit) {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
-						base::Sha1FromIndex(hIdx, i.index).c_str(), (float)size / base::Megabyte,
+						base::Sha1FromIndex(hIdx, i.index), (float)size / base::Megabyte,
 						(float)limit / base::Megabyte);
 					return false;
 				}
