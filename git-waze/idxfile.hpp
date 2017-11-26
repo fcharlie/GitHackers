@@ -102,7 +102,9 @@ namespace idx {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
 						base::Sha1FromIndex(hIdx, i.offset), (float)size / base::Megabyte,
 						(float)limit / base::Megabyte);
+#if CHECKLIMIT_RETURN
 					return false;
+#endif
 				}
 				else if (size > warn) {
 					if (wfs.files.size() < wfs.limits) {
@@ -160,7 +162,9 @@ namespace idx {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
 						base::Sha1FromIndex(hIdx, i.index), (float)size / base::Megabyte,
 						(float)limit / base::Megabyte);
+#if CHECKLIMIT_RETURN
 					return false;
+#endif
 				}
 				else if (size > warn) {
 					if (wfs.files.size() < wfs.limits) {

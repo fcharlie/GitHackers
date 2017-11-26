@@ -5,7 +5,12 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <string_view>
 #include <Windows.h>
+
+#ifndef CHECKLIMIT_RETURN
+#define CHECKLIMIT_RETURN 0
+#endif
 
 #define bswap32(x) _byteswap_ulong(x)
 #define bswap64(x) _byteswap_uint64(x)

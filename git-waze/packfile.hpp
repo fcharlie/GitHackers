@@ -1,6 +1,5 @@
 #ifndef GIT_WAZE_PACKFILE_HPP
 #define GIT_WAZE_PACKFILE_HPP
-#include <string_view>
 #include "base.hpp"
 #include "console.hpp"
 
@@ -120,7 +119,9 @@ namespace pack {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
 						base::Sha1FromIndex(hIdx, i), (float)sz / base::Megabyte,
 						(float)limitsize / base::Megabyte);
+#if CHECKLIMIT_RETURN
 					return false;
+#endif
 				}
 				else if (sz > warnsize) {
 					FileIndex fi;
