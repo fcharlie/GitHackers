@@ -1,6 +1,7 @@
 #ifndef IDXFILE_HPP
 #define IDXFILE_HPP
 #include "base.hpp"
+#include "console.hpp"
 #pragma once
 
 namespace idx {
@@ -98,6 +99,9 @@ namespace idx {
 				auto size = pre - i.offset;
 				pre = i.offset;
 				if (size > limit) {
+					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
+						base::Sha1FromIndex(hIdx, i).c_str(), (float)sz / base::Megabyte,
+						(float)limitsize / base::Megabyte);
 					return false;
 				}
 				else if (size > warn) {
@@ -153,6 +157,9 @@ namespace idx {
 				auto size = pre - i.offset;
 				pre = i.offset;
 				if (size > limit) {
+					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
+						base::Sha1FromIndex(hIdx, i).c_str(), (float)sz / base::Megabyte,
+						(float)limitsize / base::Megabyte);
 					return false;
 				}
 				else if (size > warn) {

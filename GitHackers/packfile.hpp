@@ -2,6 +2,8 @@
 #define PACKFILE_HPP
 #include <string_view>
 #include "base.hpp"
+#include "console.hpp"
+
 #pragma once
 namespace pack {
 	struct IndexHeader {
@@ -115,11 +117,9 @@ namespace pack {
 				}
 				auto sz = ObjectSize(offset);
 				if (sz > limitsize) {
-					/*
-						console::Printeln("File: %s size %4.2f MB, more than %4.2f MB",
-						Sha1FromIndex(fdx, buf, i), (float)sz / scale::Megabyte,
-						(float)limitsize / scale::Megabyte);
-					*/
+					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
+						base::Sha1FromIndex(hIdx, i).c_str(), (float)sz / base::Megabyte,
+						(float)limitsize / base::Megabyte);
 					return false;
 				}
 				else if (sz > warnsize) {

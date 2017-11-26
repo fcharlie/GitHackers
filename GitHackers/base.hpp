@@ -73,7 +73,7 @@ namespace base {
 			return -1;
 		}
 		LARGE_INTEGER li;
-		if (GetFileSizeEx(hFile, &li)!=TRUE) {
+		if (GetFileSizeEx(hFile, &li) != TRUE) {
 			li.QuadPart = -1;
 		}
 		CloseHandle(hFile);
