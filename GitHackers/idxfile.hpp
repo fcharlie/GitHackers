@@ -94,18 +94,18 @@ namespace idx {
 				objsraw[i].index = i;
 			}
 			std::sort(objs.begin(), objs.end());
-			auto pre = pkflen - 20;
+			std::uint64_t pre = pkflen - 20;
 			for (const auto &i : objs) {
 				auto size = pre - i.offset;
 				pre = i.offset;
 				if (size > limit) {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
-						base::Sha1FromIndex(hIdx, i).c_str(), (float)sz / base::Megabyte,
-						(float)limitsize / base::Megabyte);
+						base::Sha1FromIndex(hIdx, i.offset).c_str(), (float)size / base::Megabyte,
+						(float)limit / base::Megabyte);
 					return false;
 				}
 				else if (size > warn) {
-					if (wfs.files.size < wfs.limits) {
+					if (wfs.files.size() < wfs.limits) {
 						base::FileInfo fileinfo;
 						fileinfo.file = base::Sha1FromIndex(hIdx, i.offset);
 						fileinfo.size = size;
@@ -152,20 +152,20 @@ namespace idx {
 				objsraw[i].index = i;
 			}
 			std::sort(objs.begin(), objs.end());
-			auto pre = pkflen - 20;
+			std::uint64_t pre = pkflen - 20;
 			for (const auto &i : objs) {
 				auto size = pre - i.offset;
 				pre = i.offset;
 				if (size > limit) {
 					console::Printeln(L"File: %s size %4.2f MB, more than %4.2f MB",
-						base::Sha1FromIndex(hIdx, i).c_str(), (float)sz / base::Megabyte,
-						(float)limitsize / base::Megabyte);
+						base::Sha1FromIndex(hIdx, i.index).c_str(), (float)size / base::Megabyte,
+						(float)limit / base::Megabyte);
 					return false;
 				}
 				else if (size > warn) {
-					if (wfs.files.size < wfs.limits) {
+					if (wfs.files.size() < wfs.limits) {
 						base::FileInfo fileinfo;
-						fileinfo.file = base::Sha1FromIndex(hIdx, i.offset);
+						fileinfo.file = base::Sha1FromIndex(hIdx, i.index);
 						fileinfo.size = size;
 						wfs.files.push_back(std::move(fileinfo));
 					}

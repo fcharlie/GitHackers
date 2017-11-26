@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "console.hpp"
 #include <unordered_map>
 

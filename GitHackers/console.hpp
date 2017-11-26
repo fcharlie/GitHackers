@@ -88,11 +88,11 @@ namespace console {
 	template<typename ...Args>
 	int Printeln(const wchar_t *format, Args ...args) {
 		std::wstring buffer;
-		size_t size = StringPrint(nullptr, 0, format, std::forward(args)...);
+		size_t size = StringPrint(nullptr, 0, format, args...);
 		buffer.resize(size + 1);
-		size = StringPrint(&buffer[0], buffer.size() + 1, format, std::forward(args)...);
+		size = StringPrint(&buffer[0], buffer.size() + 1, format, args...);
 		buffer[size] = L'\n';
-		return WriteInternal(color, buffer.data(), size + 1);
+		return WriteInternal(fc::Red, buffer.data(), size + 1);
 	}
 
 	size_t WriteFormatted(const wchar_t *data, size_t len);
