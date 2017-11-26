@@ -14,7 +14,7 @@ namespace pack {
 	};
 	class PackAnalyzer {
 	public:
-		PackAnalyzer(base::Wfs&wfs_):wfs(wfs_){}
+		PackAnalyzer(base::Wfs&wfs_) :wfs(wfs_) {}
 		~PackAnalyzer() {
 			if (hIdx != INVALID_HANDLE_VALUE) {
 				CloseHandle(hIdx);
@@ -27,19 +27,19 @@ namespace pack {
 			return lasterror;
 		}
 		bool resolve(std::wstring_view file) {
-			hPk = CreateFileW(file.data(), 
-				GENERIC_READ, 
-				FILE_SHARE_READ, 
-				nullptr, 
-				OPEN_EXISTING, 
-				FILE_ATTRIBUTE_NORMAL, 
+			hPk = CreateFileW(file.data(),
+				GENERIC_READ,
+				FILE_SHARE_READ,
+				nullptr,
+				OPEN_EXISTING,
+				FILE_ATTRIBUTE_NORMAL,
 				nullptr);
 			if (hPk == INVALID_HANDLE_VALUE) {
 				lasterror.assign(L"open packfile: ").append(base::SystemError());
 				return false;
 			}
 			auto idf = std::wstring(file.substr(0, file.size() - sizeof("pack") + 1)).append(L"idx"); /// replace subffix
-			hIdx= CreateFileW(idf.data(),
+			hIdx = CreateFileW(idf.data(),
 				GENERIC_READ,
 				FILE_SHARE_READ,
 				nullptr,
@@ -65,7 +65,7 @@ namespace pack {
 			if (idh.version != bswap32(2)) {
 				return false;
 			}
-			if (!base::FileSeek(hIdx,(std::uint64_t)(4 * 255), FILE_BEGIN)) {
+			if (!base::FileSeek(hIdx, (std::uint64_t)(4 * 255), FILE_BEGIN)) {
 				return false;
 			}
 			std::uint32_t nr;
@@ -116,9 +116,9 @@ namespace pack {
 				auto sz = ObjectSize(offset);
 				if (sz > limitsize) {
 					/*
-					    console::Printeln("File: %s size %4.2f MB, more than %4.2f MB",
-                        Sha1FromIndex(fdx, buf, i), (float)sz / scale::Megabyte,
-                        (float)limitsize / scale::Megabyte);
+						console::Printeln("File: %s size %4.2f MB, more than %4.2f MB",
+						Sha1FromIndex(fdx, buf, i), (float)sz / scale::Megabyte,
+						(float)limitsize / scale::Megabyte);
 					*/
 					return false;
 				}
@@ -169,7 +169,6 @@ namespace pack {
 				shift += lengthBits;
 			}
 			return length;
-			return UINT64_MAX;
 		}
 		HANDLE hIdx{ INVALID_HANDLE_VALUE };
 		HANDLE hPk{ INVALID_HANDLE_VALUE };

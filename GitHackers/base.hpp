@@ -27,14 +27,15 @@ namespace base {
 		return SetFilePointerEx(hFile, li, nullptr, dwMoveMethod) == TRUE;
 	}
 
-	template<typename IntegerT>
-	bool Readimpl(HANDLE hFile, IntegerT *in, std::size_t num=1) {
+	// support C style struct and integer(or array, pointer)
+	template<typename BaseType>
+	bool Readimpl(HANDLE hFile, BaseType *in, std::size_t num = 1) {
 		static_assert(
-			std::is_standard_layout<IntegerT>::value||std::is_integral<IntegerT>::value,
-			"only support Interger buffer");
+			std::is_standard_layout<BaseType>::value || std::is_integral<BaseType>::value,
+			"only support Interger or buffer");
 		DWORD dwread = 0;
-		if (::ReadFile(hFile, in, sizeof(IntegerT)*num, &dwread, nullptr)
-			&& dwread == sizeof(IntegerT)*num) {
+		if (::ReadFile(hFile, in, sizeof(BaseType)*num, &dwread, nullptr)
+			&& dwread == sizeof(BaseType)*num) {
 			return true;
 		}
 		return false;

@@ -3,7 +3,7 @@
 #include "base.hpp"
 #pragma once
 
-namespace idx{
+namespace idx {
 	template <typename IntegerT> struct object_base {
 		static_assert(std::is_integral<IntegerT>::value, "only support integer");
 		bool operator<(const object_base<IntegerT> &o) { return offset > o.offset; }
