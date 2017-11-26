@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GitHackers", "GitHackers\GitHackers.vcxproj", "{F3C1A17E-475B-4EE0-83D6-9BBF6A684077}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "git-waze", "git-waze\git-waze.vcxproj", "{F3C1A17E-475B-4EE0-83D6-9BBF6A684077}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

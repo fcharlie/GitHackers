@@ -38,7 +38,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="GitHackers.cpp">
+    <ClCompile Include="git-waze.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">

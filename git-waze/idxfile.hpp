@@ -1,5 +1,5 @@
-#ifndef IDXFILE_HPP
-#define IDXFILE_HPP
+#ifndef GIT_WAZE_IDXFILE_HPP
+#define GIT_WAZE_IDXFILE_HPP
 #include "base.hpp"
 #include "console.hpp"
 #pragma once

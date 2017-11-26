@@ -1,3 +1,3 @@
-# Git hackers code
+# Git Windows Analyze utils
 
-Fast resolve large size object in pack
+Fast resolve a large repository

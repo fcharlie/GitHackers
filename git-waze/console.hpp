@@ -1,5 +1,5 @@
-#ifndef GIT_HACKERS_CONSOLE_HPP
-#define GIT_HACKERS_CONSOLE_HPP
+#ifndef GIT_WAZE_CONSOLE_HPP
+#define GIT_WAZE_CONSOLE_HPP
 #pragma once
 #include <cstdio>
 #include <cstdlib>

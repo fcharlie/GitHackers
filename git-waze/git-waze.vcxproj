@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{F3C1A17E-475B-4EE0-83D6-9BBF6A684077}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GitHackers</RootNamespace>
+    <RootNamespace>git-waze</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="console.cpp" />
-    <ClCompile Include="GitHackers.cpp" />
+    <ClCompile Include="git-waze.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

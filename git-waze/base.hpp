@@ -1,5 +1,5 @@
-#ifndef GIT_HACKERS_BASE_HPP
-#define GIT_HACKERS_BASE_HPP
+#ifndef GIT_WAZE_BASE_HPP
+#define GIT_WAZE_BASE_HPP
 #pragma once
 #include <cstdint>
 #include <string>

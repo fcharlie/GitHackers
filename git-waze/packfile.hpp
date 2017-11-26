@@ -1,5 +1,5 @@
-#ifndef PACKFILE_HPP
-#define PACKFILE_HPP
+#ifndef GIT_WAZE_PACKFILE_HPP
+#define GIT_WAZE_PACKFILE_HPP
 #include <string_view>
 #include "base.hpp"
 #include "console.hpp"
