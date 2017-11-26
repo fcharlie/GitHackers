@@ -6,7 +6,10 @@
 #include <memory>
 #include <vector>
 #include <Windows.h>
-//#pragma comment(lib,"Ws2_32")
+
+#define bswap32(x) _byteswap_ulong(x)
+#define bswap64(x) _byteswap_uint64(x)
+
 
 namespace base {
 	enum StoreScale : uint64_t {
@@ -17,8 +20,21 @@ namespace base {
 		Petabyte = (1ULL << 50),
 		Exabyte = (1ULL << 60)
 	};
-#define bswap32(x) _byteswap_ulong(x)
-#define bswap64(x) _byteswap_uint64(x)
+
+	struct FileInfo {
+		std::wstring file;
+		std::uint64_t size;
+	};
+	struct Wfs {
+		enum {
+			MaxNumberOfDetails = 7
+		};
+		std::vector<FileInfo> files;
+		std::size_t counts{ 0 };
+		std::size_t limits{ MaxNumberOfDetails };
+		std::size_t memlimit{ Megabyte * 256 };
+	};
+
 	template<typename IntegerT>
 	bool FileSeek(HANDLE hFile, IntegerT offset, DWORD dwMoveMethod) {
 		static_assert(std::is_integral<IntegerT>::value, "only support integer");
@@ -40,8 +56,31 @@ namespace base {
 		}
 		return false;
 	}
+	inline HANDLE Openreadonly(std::wstring_view path) {
+		auto hFile = CreateFileW(path.data(),
+			GENERIC_READ,
+			FILE_SHARE_READ,
+			nullptr,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL,
+			nullptr);
+		return hFile;
+	}
 
-	std::shared_ptr<wchar_t > SystemErrorZerocopy() {
+	inline std::int64_t Filesize(std::wstring_view path) {
+		auto hFile = Openreadonly(path);
+		if (hFile == INVALID_HANDLE_VALUE) {
+			return -1;
+		}
+		LARGE_INTEGER li;
+		if (GetFileSizeEx(hFile, &li)!=TRUE) {
+			li.QuadPart = -1;
+		}
+		CloseHandle(hFile);
+		return li.QuadPart;
+	}
+
+	inline std::shared_ptr<wchar_t > SystemErrorZerocopy() {
 		LPWSTR pszbuf = nullptr;
 		auto dwret = FormatMessageW(
 			FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER,
@@ -107,19 +146,7 @@ namespace base {
 		*buf = '\0';
 		return buffer;
 	}
-	struct FileInfo {
-		std::wstring file;
-		std::uint64_t size;
-	};
-	struct Wfs {
-		enum {
-			MaxNumberOfDetails = 7
-		};
-		std::vector<FileInfo> files;
-		std::size_t counts{ 0 };
-		std::size_t limits{ MaxNumberOfDetails };
-		std::size_t memlimit{ Megabyte * 256 };
-	};
+
 
 }
 
