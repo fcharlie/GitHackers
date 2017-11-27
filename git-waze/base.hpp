@@ -114,7 +114,7 @@ namespace base {
 		return msg;
 	}
 	inline std::wstring Sha1FromIndex(HANDLE hFile, std::uint32_t i) {
-		if (SetFilePointer(hFile, i, nullptr, FILE_BEGIN) != 0) {
+		if (SetFilePointer(hFile,  4 + 4 + 4 + 255 * 4+i*20, nullptr, FILE_BEGIN) != 0) {
 			return L"invaild";
 		}
 		char sha1[20];
@@ -133,7 +133,7 @@ namespace base {
 		return ws;
 	}
 	inline const wchar_t *Sha1FromIndex(HANDLE hFile, wchar_t *buffer, std::uint32_t i) {
-		if (SetFilePointer(hFile, i, nullptr, FILE_BEGIN) != 0) {
+		if (SetFilePointer(hFile,  4 + 4 + 4 + 255 * 4+i*20, nullptr, FILE_BEGIN) != 0) {
 			return L"invaild";
 		}
 		char sha1[20];
